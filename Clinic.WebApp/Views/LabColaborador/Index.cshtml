@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Clinic.WebApp.Models.LabColaborador>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class=" text-center">Colaboradores</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary" role="button">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Colaborador)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreColaborador)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Departamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Definido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Registrado)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Colaborador)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreColaborador)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Departamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Definido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Registrado)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
