@@ -1,8 +1,12 @@
-﻿namespace Clinic.WebApp.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Clinic.WebApp.Models
 {
     public class LabColaborador
     {
-        public string? Colaborador { get; set; }
+        [Key]
+        public int Id { get; set; }
+        public string Colaborador { get; set; }
         public string? NombreColaborador { get; set; }
         public int Estatus { get; set; }
         public string? Departamento { get; set; }

@@ -1,7 +1,8 @@
 ﻿using Clinic.WebApp.Models;
 using Clinic.WebApp.Models.Context;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.AspNetCore.Mvc;
+using System.Drawing;
 
 namespace Clinic.WebApp.Controllers
 {
@@ -16,8 +17,9 @@ namespace Clinic.WebApp.Controllers
         // GET: LabColaboradorController
         public ActionResult Index()
         {
-            var list = _context.LabCOLABORADOR.Where(x=> x.Definido.Equals(1) && x.Estatus.Equals(1)).Select(x => new LabColaborador
+            var list = _context.LabCOLABORADOR.Select(x => new LabColaborador
             {
+                Id = x.Id,
                 Colaborador = x.Colaborador,
                 NombreColaborador = x.NombreColaborador,
                 Estatus = x.Estatus,
@@ -25,7 +27,7 @@ namespace Clinic.WebApp.Controllers
                 Definido = x.Definido,
                 Registrado = x.Registrado,
 
-            }).ToList();
+            }).Where(x => /*x.Definido.Equals(1) &&*/ x.Estatus.Equals(1)).ToList();
 
             return View(list);
         }
@@ -45,42 +47,77 @@ namespace Clinic.WebApp.Controllers
         // POST: LabColaboradorController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(LabColaborador labcolaborador)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            if (labcolaborador is null) return Content("Los campos no pueden estar vacios");
+
+            _context.Add(labcolaborador);
+            _context.SaveChanges();
+
+            return Redirect(Url.Content("~/LabColaborador/Index"));
         }
 
         // GET: LabColaboradorController/Edit/5
+        [HttpGet]
         public ActionResult Edit(int id)
         {
-            return View();
+            LabColaborador model = new();
+            
+            
+            var colab = _context.LabCOLABORADOR.Find(id);
+            //if (colab == null) return Content("id no encontrado");
+            model.Id = colab.Id;    
+            model.Colaborador = colab.Colaborador;
+            model.NombreColaborador = colab.NombreColaborador;
+            model.Estatus = colab.Estatus;
+            model.Departamento = colab.Departamento;
+            model.Definido = colab.Definido;
+            model.Registrado = colab.Registrado;
+            
+
+            return View(model);
         }
 
         // POST: LabColaboradorController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(LabColaborador colab)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var model = _context.LabCOLABORADOR.Find(colab.Id);
+            if (model == null) return Content("Not found");
+            model.Id = colab.Id;
+            model.Colaborador = colab.Colaborador;
+            model.NombreColaborador = colab?.NombreColaborador;
+            model.Estatus = colab!.Estatus;
+            model.Departamento = model.Departamento;
+            model.Definido = colab.Definido;
+            model.Registrado = model.Registrado;
+
+            _context.Update(model);
+            _context.SaveChanges();
+
+            return Redirect(Url.Content("~/LabColaborador/Index"));
         }
 
         // GET: LabColaboradorController/Delete/5
+        [HttpGet]
         public ActionResult Delete(int id)
         {
+            LabColaborador model = new();
+            var colab = _context.LabCOLABORADOR.Find(id);
+
+            model.Id = id;
+            model.Colaborador = colab.Colaborador;
+            model.NombreColaborador = colab?.NombreColaborador;
+            model.Estatus = colab!.Estatus;
+            model.Departamento = model.Departamento;
+            model.Definido = colab.Definido;
+            model.Registrado = model.Registrado;
+
+            colab.Estatus = 3; 
+
+            _context.SaveChanges();
+
             return View();
         }
 

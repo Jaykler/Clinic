@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/Login.css" asp-append-version="true" />
+</head>
+<body>
+
+    <div class="container-fluid">
+        <form class="mx-auto" id="frmAcceder">
+            <h4 class="text-center">Iniciar Sesión <i class="fa-solid fa-arrow-right-to-bracket"></i></h4>
+            <hr />
+            <div class="mb-3 mt-5">
+                <label for="email" class="form-label ">Usuario</label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="usuario" placeholder="jondoe@example.com">
+            </div>
+            <div class="mb-3">
+                <label for="tPassword" class="form-label">Password</label>
+                <input type="password" class="form-control" id="tPassword" name="password" placeholder="************">
+            </div>
+            <button type="submit" class="btn btn-success mt-4"><strong>Iniciar Sesión</strong> </button>
+        </form>
+    </div>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        
+            <script>
+
+                $(document).ready(function () {
+                    $("#frmAcceder").submit(function (e) {
+                        e.preventDefault();
+                        url = "@Url.Content("~/Login/Enter")"
+                        parametros = $(this).serialize();
+                        console.log(parametros)
+                        
+                        $.post(url, parametros, function (data) {
+                            console.log(data)
+                            if (data == "1") {
+                                window.location = "@Url.Content("~/Home")"
+                            }
+                            else {
+                                alert(data)
+                            }
+                        })
+                    })
+                })
+            </script>
+        <script src="https://kit.fontawesome.com/d34e817139.js" crossorigin="anonymous"></script>
+</body>
+</html>

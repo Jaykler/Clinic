@@ -1,4 +1,4 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+﻿﻿@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
 
 * {
     padding: 0;
@@ -7,7 +7,7 @@
 }
 
 body {
-    background-image: url("/images/bg-1.jpg");
+    background-image: url("/images/imagenc.jpg");
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
@@ -16,26 +16,27 @@ body {
 
 form {
     width: 24%;
-    background-color: darkslategray;
+    background-color: /*rgb(222, 226, 229)*/ #F1F0F5;
     opacity: .9;
     padding: 50px;
     border-radius: 20px;
     margin-top: 150px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.btn-outline-success {
+.btn {
     width: 100%;
-    border: none;
+    border: 1px solid #e3f2fd;
     border-radius: 50px;
-    background-color: cadetblue;
+    /*background-color: #F1F0F5;*/
 }
 
 .form-control {
     color: rgba(0,0,0,0.87);
-    border-bottom-color: rgba(0,0,0,0.42);
+    border-bottom-color: #e3f2fd;
     box-shadow: none !important;
     border: none;
-    border-bottom: 1px solid;
+    border-bottom: 1px solid #e3f2fd;
     border-radius: 4px 4px 0 0;
 }
 

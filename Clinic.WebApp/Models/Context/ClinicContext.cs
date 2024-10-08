@@ -5,10 +5,6 @@ namespace Clinic.WebApp.Models.Context;
 
 public partial class ClinicContext : DbContext
 {
-    public ClinicContext()
-    {
-    }
-
     public ClinicContext(DbContextOptions<ClinicContext> options)
         : base(options)
     {
@@ -18,7 +14,6 @@ public partial class ClinicContext : DbContext
 
     public virtual DbSet<User> Users { get; set; }
 
-    /*#warning/To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.*/
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 
         => optionsBuilder.UseSqlServer("Server=HILDAS-LAPTOP;Database=Clinic; Trusted_Connection=True; TrustServerCertificate=True;");
@@ -49,9 +44,15 @@ public partial class ClinicContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_USERS_mStatus");
         });
-        modelBuilder.Entity<LabColaborador>(entity => entity.HasNoKey());
-        OnModelCreatingPartial(modelBuilder);
+        modelBuilder.Entity<LabColaborador>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+            entity.ToTable("LabCOLABORADOR");
+
+
+        });
+
     }
 
-    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+   
 }
