@@ -1,4 +1,4 @@
-﻿using Clinic.WebApp.Models.Context;
+﻿using Clinic.WebApp.Data.Context;
 using Microsoft.AspNetCore.Mvc;
 
 

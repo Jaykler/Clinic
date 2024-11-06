@@ -1,5 +1,5 @@
-﻿using Clinic.WebApp.Models;
-using Clinic.WebApp.Models.Context;
+﻿using Clinic.WebApp.Data.Context;
+using Clinic.WebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Clinic.WebApp.Controllers

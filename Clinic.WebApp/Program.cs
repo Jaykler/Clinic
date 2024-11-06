@@ -1,5 +1,5 @@
+using Clinic.WebApp.Data.Service;
 using Clinic.WebApp.Models;
-using Clinic.WebApp.Models.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 

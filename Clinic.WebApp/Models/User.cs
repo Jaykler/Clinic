@@ -1,6 +1,4 @@
-﻿
-
-namespace Clinic.WebApp.Models;
+﻿namespace Clinic.WebApp.Models;
 
 public partial class User
 {

@@ -1,8 +1,7 @@
-﻿using Clinic.WebApp.Models;
-using Clinic.WebApp.Models.Context;
-using Microsoft.AspNetCore.Components.Routing;
+﻿using Clinic.WebApp.Data.Context;
+using Clinic.WebApp.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Drawing;
+
 
 namespace Clinic.WebApp.Controllers
 {
@@ -17,7 +16,7 @@ namespace Clinic.WebApp.Controllers
         // GET: LabColaboradorController
         public ActionResult Index()
         {
-            var list = _context.LabCOLABORADOR.Select(x => new LabColaborador
+            var list = _context.LabColaboradors.Select(x => new LabColaborador
             {
                 Id = x.Id,
                 Colaborador = x.Colaborador,
@@ -54,7 +53,7 @@ namespace Clinic.WebApp.Controllers
             _context.Add(labcolaborador);
             _context.SaveChanges();
 
-            return Redirect(Url.Content("~/LabColaborador/Index"));
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: LabColaboradorController/Edit/5
@@ -64,7 +63,7 @@ namespace Clinic.WebApp.Controllers
             LabColaborador model = new();
             
             
-            var colab = _context.LabCOLABORADOR.Find(id);
+            var colab = _context.LabColaboradors.Find(id);
             //if (colab == null) return Content("id no encontrado");
             model.Id = colab.Id;    
             model.Colaborador = colab.Colaborador;
@@ -83,7 +82,7 @@ namespace Clinic.WebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(LabColaborador colab)
         {
-            var model = _context.LabCOLABORADOR.Find(colab.Id);
+            var model = _context.LabColaboradors.Find(colab.Id);
             if (model == null) return Content("Not found");
             model.Id = colab.Id;
             model.Colaborador = colab.Colaborador;
@@ -104,10 +103,10 @@ namespace Clinic.WebApp.Controllers
         public ActionResult Delete(int id)
         {
             LabColaborador model = new();
-            var colab = _context.LabCOLABORADOR.Find(id);
+            var colab = _context.LabColaboradors.Find(id);
 
             model.Id = id;
-            model.Colaborador = colab.Colaborador;
+            model.Colaborador = colab!.Colaborador;
             model.NombreColaborador = colab?.NombreColaborador;
             model.Estatus = colab!.Estatus;
             model.Departamento = model.Departamento;

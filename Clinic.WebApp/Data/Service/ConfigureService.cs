@@ -1,7 +1,8 @@
-﻿using Clinic.WebApp.Models.Context;
+﻿using Clinic.WebApp.Data.Context;
+using Clinic.WebApp.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Clinic.WebApp.Models.Service
+namespace Clinic.WebApp.Data.Service
 {
     public static class ConfigureService
     {
