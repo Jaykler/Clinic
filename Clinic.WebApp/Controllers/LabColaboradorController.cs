@@ -1,4 +1,5 @@
 ﻿using Clinic.WebApp.Data.Context;
+using Clinic.WebApp.Data.Interfaces;
 using Clinic.WebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,15 +8,18 @@ namespace Clinic.WebApp.Controllers
 {
     public class LabColaboradorController : Controller
     {
+       
         private readonly ClinicContext _context;
 
-        public LabColaboradorController(ClinicContext context)
+        public LabColaboradorController(ClinicContext context )
         {
+
             _context = context;
         }
         // GET: LabColaboradorController
         public ActionResult Index()
         {
+
             var list = _context.LabColaboradors.Select(x => new LabColaborador
             {
                 Id = x.Id,
@@ -26,7 +30,7 @@ namespace Clinic.WebApp.Controllers
                 Definido = x.Definido,
                 Registrado = x.Registrado,
 
-            }).Where(x => /*x.Definido.Equals(1) &&*/ x.Estatus.Equals(1)).ToList();
+            }).Where(x => x.Definido.Equals(1) && x.Estatus.Equals(1)).ToList();
 
             return View(list);
         }
@@ -95,7 +99,7 @@ namespace Clinic.WebApp.Controllers
             _context.Update(model);
             _context.SaveChanges();
 
-            return Redirect(Url.Content("~/LabColaborador/Index"));
+            return RedirectToAction("Index");
         }
 
         // GET: LabColaboradorController/Delete/5
@@ -113,26 +117,24 @@ namespace Clinic.WebApp.Controllers
             model.Definido = colab.Definido;
             model.Registrado = model.Registrado;
 
-            colab.Estatus = 3; 
 
-            _context.SaveChanges();
-
-            return View();
+            return View(model);
         }
 
         // POST: LabColaboradorController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult DeleteConfirmation(int id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+           /* LabColaborador model = new();*/
+            var colab = _context.LabColaboradors.Find(id);
+
+            colab!.Estatus = 3;
+
+            _context.Update(colab);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
         }
     }
 }

@@ -8,8 +8,7 @@
 <h1>Eliminar este </h1>
 
 <h3>Estar seguro de que deseas borrarlo?</h3>
-<div cla>
-    <h4>Lab Colaborador</h4>
+<div >
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -50,8 +49,9 @@
         </dd>
     </dl>
     
-    <form asp-action="Delete">
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+    <form asp-action="DeleteConfirmation" asp-route-id="@Model.Id" method="post">
+        |
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+        <input type="submit" value="Borrar" class="btn btn-primary" />
     </form>
 </div>

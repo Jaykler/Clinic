@@ -9,9 +9,9 @@ public partial class ClinicaHistorica
 
     public string? Identificacion { get; set; }
 
-    public DateTime? FechaApertura { get; set; }
+    public DateTime? FechaApertura { get; set; } = DateTime.Now;
 
-    public int? Estado { get; set; }
+    public int? Estado { get; set; } = 1;
 
     public virtual MStatus? EstadoNavigation { get; set; }
 }

@@ -1,0 +1,50 @@
+﻿@model Clinic.WebApp.Models.ClinicaDoctore
+
+@{
+    ViewData["Title"] = "Delete";
+}
+<h1>Borrar</h1>
+
+<h3>Esta seguro de que deseas borrarlo?</h3>
+<div>
+    <h4>ClinicaDoctore</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Iddoctor)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Iddoctor)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Identificacion)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Identificacion)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nombres)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nombres)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Idespecialidad)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Idespecialidad)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+    </dl>
+    
+    <form asp-action="DeleteConfirmation" asp-route-id="@Model.Iddoctor" method="post">
+
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a> |
+        <input type="submit" value="Borrar" class="btn btn-primary" />
+    </form>
+</div>

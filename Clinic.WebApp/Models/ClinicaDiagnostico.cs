@@ -11,7 +11,7 @@ public partial class ClinicaDiagnostico
 
     public int? Iddoctor { get; set; }
 
-    public DateTime? FechaDiagnostico { get; set; }
+    public DateTime? FechaDiagnostico { get; set; } = DateTime.Now;
 
     public string? Diagnosticos { get; set; }
 
@@ -19,7 +19,7 @@ public partial class ClinicaDiagnostico
 
     public string? ExamenLab { get; set; }
 
-    public int? Estado { get; set; }
+    public int? Estado { get; set; } = 1;
 
     public virtual MStatus? EstadoNavigation { get; set; }
 }

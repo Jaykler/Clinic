@@ -40,7 +40,7 @@ public partial class Paciente
 
     public string? Posicion { get; set; }
 
-    public string? Estado { get; set; }
+    public string? Estado { get; set; } = "1";
 
     public string? Nivel { get; set; }
 

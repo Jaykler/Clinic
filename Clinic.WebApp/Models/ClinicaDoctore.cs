@@ -11,5 +11,5 @@ public partial class ClinicaDoctore
 
     public int? Idespecialidad { get; set; }
 
-    public int? Estado { get; set; }
+    public int? Estado { get; set; } = 1;
 }
